@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin=
+                  "anonymous">
+
+    <style>
+        .profile-section img{
+            width: 300px;
+        }
+        .input-section{
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <form th:object="${sentence}" th:action="@{handleAddSentence}"  method="POST">
+        <div class="d-flex py-4 rounded justify-content-center">
+            <div class="profile-section bg-success ">
+                <img id="output-image" src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="profile image">
+                <input class="form-control" type="file">
+            </div>
+
+            <div class="input-section  ms-3 ">
+                <h3>New sentence </h3>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <labe for="sentenceTitle"> Sentence Title </labe>
+                        <input class="form-control" id="sentenceTitle" type="text" th:field="*{title}">
+                    </div>
+                    <div>
+                        <labe for="editorSelect"> Choose Editor</labe>
+                        <select id="editorSelect" th:field="*{editorId}" class="form-select" >
+                            <option value="0" > Choose Editor </option>
+                            <option th:each="editor: ${editors}" th:value="${editor.id}" th:text="${editor.name}">One</option>
+<!--                            <option value="2">One</option>-->
+<!--                            <option value="3">Two</option>-->
+<!--                            <option value="3">Three</option>-->
+                        </select>
+                    </div>
+                </div>
+
+                    <label for="sentenceDescription" th:field="*{description}"> Sentence Description </label>
+                    <textarea id="sentenceDescription" class="form-control"></textarea>
+
+                <label for="sentenceImage" SentenceTitle> Sentence Image</label>
+                <input th:field="*{imgUrl}" class="form-control" id="sentenceImage" type="text">
+
+                <div class="d-flex justify-content-between mt-2">
+                    <button class="btn btn-warning" type="submit"> Post Sentence </button>
+                    <button class="btn btn-danger">Cancel</button>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
